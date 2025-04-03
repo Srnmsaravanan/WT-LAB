@@ -1,0 +1,41 @@
+
+<html>
+<head>
+    <title>Mouse Events on Image</title>
+</head>
+<body>
+    <h1>Mouse Events on Image</h1>
+
+    <div>
+        <img id="eventImage" src="images\apple.jpg" alt="Sample Image">
+    </div>
+
+    <div id="eventLog">
+        <h3>Event Log</h3>
+        <p id="currentEvent">No event triggered yet.</p>
+    </div>
+
+    <script>
+        // Get the image and the event log element
+        const eventImage = document.getElementById('eventImage');
+        const currentEvent = document.getElementById('currentEvent');
+
+        // Function to update the current event
+        function logEvent(eventName) {
+            currentEvent.textContent = `Event: ${eventName}`;
+        }
+
+        // Mouse events for the image
+        eventImage.addEventListener('click', () => logEvent('Click'));
+        eventImage.addEventListener('dblclick', () => logEvent('Double Click'));
+        eventImage.addEventListener('mousedown', () => logEvent('Mouse Down'));
+        eventImage.addEventListener('mouseup', () => logEvent('Mouse Up'));
+        eventImage.addEventListener('mousemove', () => logEvent('Mouse Move'));
+        eventImage.addEventListener('mouseenter', () => logEvent('Mouse Enter'));
+        eventImage.addEventListener('mouseleave', () => logEvent('Mouse Leave'));
+        eventImage.addEventListener('mouseover', () => logEvent('Mouse Over'));
+        eventImage.addEventListener('mouseout', () => logEvent('Mouse Out'));
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+  <title>Calendar</title>
+</head>
+<body><center><h1>Calendar Generator</h1>
+  <input type="number" id="year" placeholder="Enter Year" onchange="generateCalendar()">
+<button onclick="generateCalendar()">Display</button>
+  <div id="calendar"></div>
+  
+  <script>
+    function generateCalendar() {
+      const year = document.getElementById('year').value;
+      if (!year) 
+	return;
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      let calendarHTML = "<h1>"+year+"</h1><table><tr>";
+      for (let month = 0; month < 12; month++) {
+        const firstDay = new Date(year, month).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        let monthHTML = `<h3>${months[month]}</h3><table border="1"><tr>`;
+        for (let i = 0; i < 7; i++) 
+	monthHTML += `<th>${["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][i]}</th>`;
+        monthHTML += '</tr><tr>';
+        for (let i = 0; i < firstDay; i++) 
+	monthHTML += '<td></td>';
+        for (let day = 1; day <= daysInMonth; day++) {
+          if ((firstDay + day - 1) % 7 === 0 && day !== 1) 
+	monthHTML += '</tr><tr>';
+          monthHTML += `<td>${day}</td>`;
+        }
+        monthHTML += '</tr></table>';
+      if((month)%4==0)
+          calendarHTML +="</tr><tr>"
+      calendarHTML +="<td>"+ monthHTML+"</td><td> </td>";
+      }
+      document.getElementById('calendar').innerHTML = calendarHTML;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>Fibonacci Series</title>
+<style>
+form{
+width: 400px;
+
+}
+button{
+background: blue;
+color: white;
+
+}
+</style>
+</head>
+<body>
+<h1> Fibonacci Series of Given Number :</h1>
+
+<form action="#" method="Post" onsubmit="fibonacci(); return false;">
+  <label>Enter The Number: </label>
+  <input type="number" min="0" id="num" required>
+  <button type="submit">Submit</button>
+  <h3 id="res"></h3>
+</form>
+
+<script>
+function fibonacci() {
+  const n = parseInt(document.getElementById("num").value);  // Parse the input value as an integer
+
+  // Handle the first two numbers in the Fibonacci series
+  let a = 0, b = 1;
+ let res=a;
+
+  for (let i = 1; i <n; i++) {
+    res += `, ${b}`;
+    let temp = a + b;
+    a = b;
+    b = temp;
+  }
+
+      document.getElementById("res").innerText = `Fibonacci Series Upto ${n} terms : ${res}`;
+
+ }
+</script>
+
+</body>
+</html>

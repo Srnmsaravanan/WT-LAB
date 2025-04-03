@@ -1,0 +1,38 @@
+<html>
+<head>
+<title> Find Factorial </title>
+<style>
+form{
+width: 400px;
+
+}
+button{
+background: blue;
+color: white;
+
+}
+</style>
+</head>
+<body><center>
+<h1> Factorial of Given number :</h1>
+
+<form action="#" method="Post" onsubmit="factorial(); return false;">
+  <label>Enter The Number: </label>
+  <input type="number" min="0" max="170" id="num" required>
+  <button type="submit">Submit</button>
+  <h3 id="res"></h3>
+</form>
+
+<script>
+function factorial() {
+  let fact = 1;  // Use let here instead of const
+  const n = parseInt(document.getElementById("num").value);  // Parse the input value as an integer
+  for (let i = 1; i <= n; i++) {
+    fact *= i;
+  }
+  document.getElementById("res").innerText = `Factorial of ${n} : ${fact}`;
+}
+</script>
+
+</body>
+</html>

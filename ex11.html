@@ -1,0 +1,102 @@
+<!--
+<html>
+<head>
+  <title>Login Form</title>
+  <script>
+    let attempts = 3;
+    function validate() {
+      let username = document.loginform.username.value;
+      let password = document.loginform.password.value;
+      if (!username || !password) {
+        alert("Please enter both Username and Password");
+        return false;
+      }
+      if (username === "cs" && password === "123") {
+        alert("Login Successful");
+        return false;
+      } else {
+        attempts--;
+        alert(`Invalid credentials. You have ${attempts} attempt(s) left.`);
+        if (attempts === 0) {
+          alert("No attempts left.");
+          document.loginform.username.disabled = true;
+          document.loginform.password.disabled = true;
+          document.loginform.login.disabled = true;
+        }
+        return false;
+      }
+    }
+  </script>
+</head>
+<body>
+  <center><h1>Login Form</h1>
+    <form name="loginform" onsubmit="return validate()">
+      <label>Username: <input type="text" name="username"></label><br><br>
+      <label>Password: <input type="password" name="password"></label><br><br>
+      <input type="submit" name="login" value="Login">
+    </form>
+  </center>
+</body>
+</html>
+-->
+
+<html>
+<head>
+  <title>Login Form</title>
+</head>
+<body>
+  <center><h1>Login Form</h1>
+
+<form id="loginForm" action="#" method="post" onsubmit="return validateLoginForm()">
+  <label>Username (or Email):</label>
+  <input type="text" id="username" required>
+  <br><br>
+
+  <label>Password: </label>
+  <input type="password" id="password" required>
+  <br><br>
+
+  <button type="submit"> Login </button>
+</form>
+
+<script>
+function validateLoginForm() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  // Validate username (email format check)
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  if (!username) {
+    alert("Username is required.");
+    return false;
+  }
+  if (!emailPattern.test(username)) {
+    alert("Please enter a valid email address.");
+    return false;
+  }
+
+  // Validate password
+  if (!password) {
+    alert("Password is required.");
+    return false;
+  }
+  
+  if (password.length < 8) {
+    alert("Password must be at least 8 characters long.");
+    return false;
+  }
+  const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
+  if (!specialCharPattern.test(password)) {
+    alert("Password must contain at least one special character (e.g., !, @, #, $, %, etc.).");
+    return false;
+  }
+
+  // If all validations pass
+ alert("Login Successful!"+"\nUsername : "+username+"\nPassword : "+password);
+  return true;
+
+
+}
+</script>
+</body>
+</html>

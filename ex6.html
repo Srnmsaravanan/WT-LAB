@@ -1,0 +1,147 @@
+<!--
+<html lang="en">
+<head>   
+    <title>Array Operations with Search</title>
+</head>
+<body>
+    
+        <h1>Array Operations </h1>
+    
+        <input type="text" id="inputValue" placeholder="Enter item to add">
+        <button onclick="addItem()">Add Item</button>    
+       <p>  Array: <span id="arrayContent">[]</span></p>
+      <p>  Length: <span id="arrayLength">0</span></p>
+          <p><input type="text" id="searchInput" placeholder="Search in the array" oninput="searchInArray()"></span></p>
+            <p>Search Result: <span id="searchResult"></span></p>
+      
+        <button onclick="removeLastItem()">Pop Last Item</button>
+        <button onclick="reverseArray()">Reverse Array</button>
+        <button onclick="sortArray()">Sort Array</button>     
+            <button onclick="sliceArray()">Slice Array</button>
+            <p>Array after slice: <span id="sliceResult"></span></p> 
+        <ul id="arrayList"></ul>
+    </div>
+
+    <script>
+        let array = [];
+
+        // Function to add an item to the array
+        function addItem() {
+            const input = document.getElementById('inputValue').value.trim();
+            if (input) {
+                array.push(input);
+                updateDisplay();
+            }
+            document.getElementById('inputValue').value = '';
+        }
+
+        // Function to remove the last item from the array (pop)
+        function removeLastItem() {
+            array.pop();
+            updateDisplay();
+        }
+
+        // Function to reverse the array
+        function reverseArray() {
+            array.reverse();
+            updateDisplay();
+        }
+
+        // Function to sort the array
+        function sortArray() {
+            array.sort();
+            updateDisplay();
+        }
+
+        // Function to slice the array (first 2 items)
+        function sliceArray() {
+            const sliced = array.slice(0, 2);
+            document.getElementById('sliceResult').innerText = JSON.stringify(sliced);
+        }
+
+        // Function to update the display of the array and its details
+        function updateDisplay() {
+            document.getElementById('arrayContent').innerText = JSON.stringify(array);
+            document.getElementById('arrayLength').innerText = array.length;
+            displayArrayItems();
+        }
+
+        // Function to search for an item in the array
+        function searchInArray() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            const searchResult = document.getElementById('searchResult');
+            if (searchTerm) {
+                const index = array.indexOf(searchTerm);
+                if (index !== -1) {
+                    searchResult.innerText = `Found "${searchTerm}" at index ${index}`;
+                } else {
+                    searchResult.innerText = `"${searchTerm}" not found in the array`;
+                }
+            } else {
+                searchResult.innerText = '';
+            }
+        }
+
+        // Function to display array items in a list
+        function displayArrayItems() {
+            const list = document.getElementById('arrayList');
+            list.innerHTML = '';
+            array.forEach(item => {
+                const li = document.createElement('li');
+                li.innerText = item;
+                list.appendChild(li);
+            });
+        }
+
+        // Initialize display
+        updateDisplay();
+    </script>
+
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Array Operations with Search</title>
+</head>
+<body>
+  <h1>Array Operations</h1>
+  <input id="inputValue" placeholder="Enter item"><button onclick="addItem()">Add</button><br>
+  Array: <span id="arrayContent">[]</span> Length: <span id="arrayLength">0</span><br>
+  <input id="searchInput" placeholder="Search" oninput="searchInArray()">
+  <span id="searchResult"></span><br>
+  <button onclick="removeLastItem()">Pop</button><button onclick="reverseArray()">Reverse</button>
+  <button onclick="sortArray()">Sort</button><button onclick="sliceArray()">Slice</button><br>
+  Array after slice: <span id="sliceResult"></span><br>
+  <ul id="arrayList"></ul>
+
+  <script>
+    let array = [];
+    const updateDisplay = () => {
+      document.getElementById('arrayContent').innerText = JSON.stringify(array);
+      document.getElementById('arrayLength').innerText = array.length;
+      document.getElementById('arrayList').innerHTML = array.map(item => `<li>${item}</li>`).join('');
+    };
+    const addItem = () => { 
+      const value = document.getElementById('inputValue').value.trim();
+      if (value) array.push(value);
+      document.getElementById('inputValue').value = ''; 
+      updateDisplay(); 
+    };
+    const removeLastItem = () => { array.pop(); updateDisplay(); };
+    const reverseArray = () => { array.reverse(); updateDisplay(); };
+    const sortArray = () => { array.sort(); updateDisplay(); };
+    const sliceArray = () => { 
+      document.getElementById('sliceResult').innerText = JSON.stringify(array.slice(0, 2)); 
+    };
+    const searchInArray = () => {
+      const term = document.getElementById('searchInput').value.trim();
+      const result = term ? array.indexOf(term) : -1;
+      document.getElementById('searchResult').innerText = result !== -1 ? `Found at index ${result}` : 'Not found';
+    };
+    updateDisplay();
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<html>
+<head>   
+    <title>Current Date and Time with Greetings</title>
+    <style> 
+        .container {
+        font-size: 24px;
+            text-align: center;
+            padding: 40px;
+        }
+  
+        .greeting {         
+            color: green;       
+        }
+        .date-time {
+            color: blue;
+        }
+        .date-time span {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Current Date and Time</h1>
+    <div class="greeting" id="greeting">
+        <!-- Greeting message will be displayed here -->
+    </div>
+    <div class="date-time" id="dateTime">
+        <!-- Current date and time will be displayed here -->
+    </div>
+</div>
+
+<script>
+    function updateDateTime() {
+        const now = new Date();
+
+        // Get the current time components
+        const day = now.getDate().toString().padStart(2, '0');
+        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+        const year = now.getFullYear();
+
+        const hours = now.getHours();
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+
+        const formattedDate = `${month}/${day}/${year}`;
+        const formattedTime = `${hours}:${minutes}:${seconds}`;
+
+        // Determine the greeting based on the current hour
+        let greeting = '';
+        if (hours < 12) {
+            greeting = 'Good Morning Everyone!';
+        } else if (hours < 16) {
+            greeting = 'Good Afternoon Everyone!';
+        } else {
+            greeting = 'Good Evening Everyone!';
+        }
+
+        // Update the greeting and date/time on the page
+        document.getElementById("greeting").innerHTML = greeting;
+        document.getElementById("dateTime").innerHTML = `
+            <span>Date: ${formattedDate}</span>
+            <span>Time: ${formattedTime}</span>
+        `;
+    }
+
+    setInterval(updateDateTime, 1000); // Update the date and time every second
+    updateDateTime(); // Initial call to show the date and time immediately
+</script>
+
+</body>
+</html>

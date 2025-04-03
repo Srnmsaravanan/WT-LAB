@@ -1,0 +1,64 @@
+<html >
+<head>
+  <title>String Functions in JS</title>
+</head>
+<body>
+  <h1>String Functions in JavaScript</h1>
+  <input type="text" id="user-input" value="Computer Science Department" placeholder="Enter a string" /><br><br>
+  
+  <div>
+    <button onclick="showResult('toUpperCase')">toUpperCase()</button>
+    <button onclick="showResult('toLowerCase')">toLowerCase()</button>
+    <button onclick="showResult('length')">length</button>
+    <button onclick="showResult('substring')">substring()</button>
+    <button onclick="showResult('replace')">replace()</button>
+    <button onclick="showResult('concat')">concat()</button>
+    <button onclick="showResult('charAt')">charAt()</button>
+    <button onclick="showResult('includes')">includes()</button>
+    <button onclick="showResult('indexOf')">indexOf()</button>
+    <button onclick="showResult('trim')">trim()</button>
+    <button onclick="showResult('split')">split()</button>
+  </div>
+
+  <h3>For Substring, Replace, Concatenate:</h3>
+  <label>Start Index: <input type="number" id="start-index" value="0" /></label><br>
+  <label>End Index: <input type="number" id="end-index" value="5" /></label><br>
+  <label>Text to Replace: <input type="text" id="replace-text" value="Department" /></label><br>
+  <label>Text to Replace As: <input type="text" id="replace-as" value="Books" /></label><br>
+  <label>Text to Concatenate: <input type="text" id="concat-text" value=" ,Srnmc" /></label><br>
+  <label>Search Text: <input type="text" id="search-text" value="Science" /></label><br>
+  <label>Delimiter for Split: <input type="text" id="split-text" value=" " /></label><br>
+
+  <h2>Result:</h2>
+  <p id="output"></p>
+
+  <script>
+    function showResult(func) {
+      const str = document.getElementById('user-input').value;
+      const startIndex = parseInt(document.getElementById('start-index').value);
+      const endIndex = parseInt(document.getElementById('end-index').value);
+      const replaceText = document.getElementById('replace-text').value;
+      const replaceAs = document.getElementById('replace-as').value;
+      const concatText = document.getElementById('concat-text').value;
+      const searchText = document.getElementById('search-text').value;
+      const splitText = document.getElementById('split-text').value;
+
+      const operations = {
+        'toUpperCase': () => str.toUpperCase(),
+        'toLowerCase': () => str.toLowerCase(),
+        'length': () => str.length,
+        'substring': () => str.substring(startIndex, endIndex),
+        'replace': () => str.replace(replaceText, replaceAs),
+        'concat': () => str.concat(concatText),
+        'charAt': () => str.charAt(startIndex),
+        'includes': () => str.includes(searchText),
+        'indexOf': () => str.indexOf(searchText),
+        'trim': () => str.trim(),
+        'split': () => str.split(splitText)
+      };
+
+      document.getElementById('output').innerText = `${func}(): ${operations[func]()}`;
+    }
+  </script>
+</body>
+</html>
